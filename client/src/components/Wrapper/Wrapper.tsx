@@ -2,9 +2,10 @@ import React, { FC, ReactNode } from 'react'
 import { Box } from '@mui/material'
 
 interface IProps {
-	children: ReactNode
+	children: ReactNode,
 	top?: boolean
 }
+
 
 const Wrapper: FC<IProps> = ({ children, top }) => {
 
@@ -21,6 +22,7 @@ const Wrapper: FC<IProps> = ({ children, top }) => {
 	if (top) {
 		stylesDefault.justifyContent = 'flex-start'
 	}
+
 
 	return (
 		<Box sx={stylesDefault}>

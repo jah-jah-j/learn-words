@@ -3,6 +3,7 @@ import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 import { Wrapper } from '../../components/Wrapper'
 
+
 const TrainingPage = () => {
 	const navigate = useNavigate()
 
@@ -24,23 +25,19 @@ const TrainingPage = () => {
 		{
 			title: 'Тренировка слов',
 			onClick: handleWordsTraining,
-		},
-	]
+		}]
 
 	return (
 		<Wrapper>
 			{buttons.map(({ title, onClick }) => {
-				return (
-					<Button
-						key={title}
-						variant='contained'
-						color='primary'
-						onClick={onClick}
-						sx={{ width: '250px', margin: 2, backgroundColor: 'secondary.main' }}
-					>
-						{title}
-					</Button>
-				)
+				return <Button
+					key={title}
+					variant='contained'
+					color='primary'
+					onClick={onClick}
+					sx={{ width: '250px', margin: 2, backgroundColor: 'secondary.main' }}>
+					{title}
+				</Button>
 			})}
 		</Wrapper>
 	)

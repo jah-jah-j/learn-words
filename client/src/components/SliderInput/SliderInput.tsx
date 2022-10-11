@@ -2,13 +2,14 @@ import React, { FC } from 'react'
 import { Box, Slider, Typography } from '@mui/material'
 
 interface IProps {
-	title: string
-	value: number
-	onChange: (event: Event, newValue: number | number[]) => void
-	step: number
-	min: number
-	max: number
+	title: string,
+	value: number,
+	onChange: (event: Event, newValue: number | number[]) => void,
+	step: number,
+	min: number,
+	max: number,
 }
+
 
 const SliderInput: FC<IProps> = ({ title, value, onChange, step, min, max }) => {
 

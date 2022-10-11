@@ -10,7 +10,6 @@ const TrainingWordsPage = () => {
 	const navigate = useNavigate()
 
 	const handleNavigateToSettings = () => navigate('/training/words/setting')
-
 	if (loading) return <Loading />
 
 	if (!loading && !word) {
