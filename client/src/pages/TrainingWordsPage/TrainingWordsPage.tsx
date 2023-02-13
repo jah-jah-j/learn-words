@@ -1,13 +1,26 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useWords } from '../../hooks/useWords'
 import { Loading } from '../../components/Loading'
 import { Button, Typography } from '@mui/material'
 import { Wrapper } from '../../components/Wrapper'
 import { useNavigate } from 'react-router-dom'
+import { useSpeakText } from '../../hooks/useSpeakText'
 
 const TrainingWordsPage = () => {
-	const { word, loading, clear } = useWords()
+	const { word, translateWord, loading, clear } = useWords()
 	const navigate = useNavigate()
+
+	const { speak, cancel } = useSpeakText()
+
+	console.log('word', word)
+	useEffect(() => {
+		cancel()
+		speak(word || '')
+
+		return () => {
+			cancel()
+		}
+	}, [word, cancel, speak])
 
 	const handleNavigateToSettings = () => navigate('/training/words/setting')
 	if (loading) return <Loading />
@@ -23,7 +36,8 @@ const TrainingWordsPage = () => {
 					color='primary'
 					fullWidth
 					onClick={clear}
-					sx={{ margin: 2, maxWidth: 250, backgroundColor: 'secondary.main' }}>
+					sx={{ margin: 2, maxWidth: 250, backgroundColor: 'secondary.main' }}
+				>
 					Заново
 				</Button>
 				<Button
@@ -31,7 +45,8 @@ const TrainingWordsPage = () => {
 					color='primary'
 					fullWidth
 					onClick={handleNavigateToSettings}
-					sx={{ margin: 2, maxWidth: 250, backgroundColor: 'secondary.main' }}>
+					sx={{ margin: 2, maxWidth: 250, backgroundColor: 'secondary.main' }}
+				>
 					Перейти к настройкам
 				</Button>
 			</Wrapper>
@@ -41,7 +56,10 @@ const TrainingWordsPage = () => {
 	return (
 		<Wrapper>
 			<Typography sx={{ fontSize: 54 }} color='primary.contrastText'>
-				{word?.english}
+				{word}
+			</Typography>
+			<Typography sx={{ fontSize: 54 }} color='primary.contrastText'>
+				{translateWord}
 			</Typography>
 		</Wrapper>
 	)

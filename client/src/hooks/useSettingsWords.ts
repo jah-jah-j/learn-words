@@ -3,12 +3,20 @@ import { useDictionaryList } from './api/useDictionaryList'
 import { IDictionary } from './useAuth'
 
 export interface IUseSettingsWords {
-	dictionaryList: IDictionary[],
-	dictionary: IDictionary | null,
-	loading: boolean,
+	dictionaryList: IDictionary[]
+	dictionary: IDictionary | null
+	loading: boolean
 	setDictionary: Dispatch<SetStateAction<IDictionary | null>>
-	countWords: number,
+	translate: boolean
+	setTranslate: Dispatch<SetStateAction<boolean>>
+	isShuffle: boolean
+	setIsShuffle: Dispatch<SetStateAction<boolean>>
+	isVoice: boolean
+	setIsVoice: Dispatch<SetStateAction<boolean>>
+	countWords: number
 	setCountWords: Dispatch<SetStateAction<number>>
+	language: string
+	setLanguage: Dispatch<SetStateAction<string>>
 	init: () => void
 }
 
@@ -17,6 +25,10 @@ export const useSettingsWords = (): IUseSettingsWords => {
 	const [dictionaryList, setDictionaryList] = useState<IDictionary[]>([])
 	const [dictionary, setDictionary] = useState<IDictionary | null>(null)
 	const [countWords, setCountWords] = useState(50)
+	const [language, setLanguage] = useState('English')
+	const [translate, setTranslate] = useState(false)
+	const [isShuffle, setIsShuffle] = useState(false)
+	const [isVoice, setIsVoice] = useState(false)
 
 	const [loading, setLoading] = useState(true)
 
@@ -27,14 +39,21 @@ export const useSettingsWords = (): IUseSettingsWords => {
 		})
 	}, [getDictionaryList])
 
-
 	return {
 		loading,
 		dictionary,
 		dictionaryList,
 		countWords,
+		translate,
+		setTranslate,
+		isVoice,
+		setIsVoice,
+		isShuffle,
+		setIsShuffle,
 		setCountWords,
 		setDictionary,
+		language,
+		setLanguage,
 		init,
 	}
 }

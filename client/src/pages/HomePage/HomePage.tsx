@@ -22,20 +22,25 @@ const HomePage = () => {
 					backgroundColor: 'secondary.main',
 					top: 10,
 					right: 10,
-				}}>Выход</Button>
+				}}
+			>
+				Выход
+			</Button>
 
-			<Box sx={{
-				marginTop: 5,
-				marginLeft: 'auto',
-				marginRight: 'auto',
-				backgroundColor: 'primary.light',
-				width: '80%',
-				display: 'flex',
-				flexDirection: 'column',
-				alignItems: 'center',
-				padding: '20px',
-				borderRadius: '24px',
-			}}>
+			<Box
+				sx={{
+					marginTop: 5,
+					marginLeft: 'auto',
+					marginRight: 'auto',
+					backgroundColor: 'primary.light',
+					width: '80%',
+					display: 'flex',
+					flexDirection: 'column',
+					alignItems: 'center',
+					padding: '20px',
+					borderRadius: '24px',
+				}}
+			>
 				<Chip
 					avatar={<UserAvatar name={name} />}
 					label={name}
@@ -52,24 +57,11 @@ const HomePage = () => {
 				</Typography>
 			</Box>
 
-			<UserAchievements
-				countColor='common.white'
-				label='Слов выучено'
-				count={achievements?.wordsLearned || 0}
-			/>
+			<UserAchievements countColor='common.white' label='Слов выучено' count={achievements?.wordsLearned || 0} />
 
-			<UserAchievements
-				countColor='common.black'
-				label='Слов на повторении'
-				count={achievements?.wordsOnRepeat || 0}
-			/>
+			<UserAchievements countColor='common.black' label='Слов на повторении' count={achievements?.wordsOnRepeat || 0} />
 
-			<UserAchievements
-				countColor='common.black'
-				label='Слов в словаре'
-				count={achievements?.wordsOnRepeat || 0}
-			/>
-
+			<UserAchievements countColor='common.black' label='Слов в словаре' count={achievements?.wordsOnRepeat || 0} />
 		</Wrapper>
 	)
 }
