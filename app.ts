@@ -1,15 +1,19 @@
 import express from 'express'
 import config from 'config'
+import mongoose from 'mongoose'
 
-import auth from './src/routes/auth.routes'
-import path from 'path'
-import dictionary from './src/routes/dictionary.routes'
+import auth from './src/routes/auth.routes.js'
+import path, { dirname } from 'path'
+import dictionary from './src/routes/dictionary.routes.js'
+import { fileURLToPath } from 'url'
 
-const mongoose = require('mongoose')
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = dirname(__filename)
 
 const app = express()
 
-app.use(express.json({}))
+app.use(express.json({ limit: '50mb' }))
+app.use(express.urlencoded({ limit: '50mb' }))
 
 app.use('/api/dictionary', dictionary)
 app.use('/api/auth', auth)
@@ -33,10 +37,6 @@ async function start() {
 		console.log('Server error: ', e.message)
 		process.exit(1)
 	}
-
-
 }
 
 start()
-
-
